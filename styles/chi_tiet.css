@@ -1,0 +1,168 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    line-height: 27px;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+h1{
+    margin: 20px 0px;
+}
+a{
+    font-size: large;
+    text-decoration: none;
+    color: black;
+}
+p{
+    font-size: large;
+}
+blue{
+    color: rgb(0,0,238);
+}
+ul{
+    margin-left: 20px;
+    padding: 20px 0px;
+}
+li{
+    font-size: large;
+}
+.quang_cao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0px;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-image: linear-gradient(to right, #1E6FD9,#2984eb);
+    height: 25px;
+}
+header a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+header a:hover{
+    color: lightgray;
+    cursor: pointer;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 24px;
+    height: 100px;
+    width: calc(100vw - 24px);
+}
+.logo{
+    height: 80px;
+}
+.nav_btn{
+    font-size: 25px;
+    text-decoration: none;
+    color: black;
+}
+.nav_btn:hover{
+    color: rgb(0,0,238);
+}
+#cur_site{
+    color: rgb(0,0,238);
+}
+.search_btn img{
+    height: 20px;
+}
+.main_content{
+    background-color: #f5f7fa;
+}
+.content-box{
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: fit-content;
+    padding: 20px 10vw;
+}
+.content-box img{
+    width: 80%;
+    height: fit-content;
+    border-radius: 10px;
+    align-self: center;
+    margin: 20px 0px;
+}
+.summary-content{
+    display: flex;
+    justify-content: center;
+    width: 70vw;
+    height: fit-content;
+    img{
+        width: 40%;
+        height: fit-content;
+        border-radius: 10px;
+        margin-right: 10px;
+        margin-bottom: 50px;
+    }
+}
+.info{
+    display: flex;
+    padding-bottom: 50px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.muc_luc{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 25px 0px;
+    border: #e7e8e8 solid 3px;
+    border-radius: 7px;
+    padding-left: 30px;
+    height: 350px;
+    width: 100%;
+}
+.muc_luc ol{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: black;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    padding-left: 50px;
+}
+.muc_luc ol a:hover{
+    color: rgb(0,0,238);
+}
+#tai_sao_to_roi_karaoke_lai_quan_trong{
+    width: 100%;
+    height: 325px;
+}
+#tai_sao_to_roi_karaoke_lai_quan_trong p{
+    margin-bottom: 10px;
+}
+#tai_sao_to_roi_karaoke_lai_quan_trong ul{
+    font-size: large;
+    margin-left: 20px;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#Cac_Yeu_To_Tao_Nen_Mot_To_Roi_Karaoke_Thu_Hut{
+    width: 100%;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#45_Mau_To_Roi_Karaoke_Dep_Doc_La{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+}

@@ -166,3 +166,21 @@ nav{
     width: 100%;
     height: fit-content;
 }
+footer{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    p{
+        text-align: start;
+    }
+    .danh_muc{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+.end{
+    height: 50px;
+    background-color: #1E6FD9;
+}

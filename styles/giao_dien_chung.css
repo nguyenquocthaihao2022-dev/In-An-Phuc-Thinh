@@ -1,0 +1,118 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    line-height: 27px;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+h1{
+    margin: 20px 0px;
+}
+a{
+    font-size: large;
+    text-decoration: none;
+    color: black;
+}
+p{
+    font-size: large;
+}
+blue{
+    color: rgb(0,0,238);
+}
+ul{
+    margin-left: 20px;
+    padding: 20px 0px;
+}
+li{
+    font-size: large;
+}
+.quang_cao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0px;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+.len_dau{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    width: 64px;
+    border: 3px solid black;
+    border-radius: 26px;
+    background-color: whitesmoke;
+    right: 1%;
+    bottom: 2%;
+    position: fixed;
+    img{
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+    }
+}
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-image: linear-gradient(to right, #1E6FD9,#2984eb);
+    height: 25px;
+}
+header a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+header a:hover{
+    color: lightgray;
+    cursor: pointer;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 24px;
+    height: 100px;
+    width: calc(100vw - 24px);
+}
+.logo{
+    height: 80px;
+}
+.nav_btn{
+    font-size: 25px;
+    text-decoration: none;
+    color: black;
+}
+.nav_btn:hover{
+    color: rgb(0,0,238);
+}
+#cur_site{
+    color: rgb(0,0,238);
+}
+.search_btn img{
+    height: 20px;
+}
+.main_content{
+    padding-top: 10px;
+    background-color: #f5f7fa;
+}
+footer{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    border-top: 3px solid #1E6FD9;
+    border-bottom: 30px solid #1E6FD9;
+    background-color: whitesmoke;
+    p{
+        text-align: start;
+    }
+    .danh_muc{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}

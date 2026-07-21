@@ -5,8 +5,11 @@
     line-height: 27px;
     font-family: "Segoe UI", Arial, sans-serif;
 }
+html{
+    scroll-behavior: smooth;
+}
 h1{
-    margin: 20px 0px;
+    margin: 20px;
 }
 a{
     font-size: large;
@@ -36,7 +39,7 @@ body{
     display: flex;
     flex-direction: column;
 }
-.len_dau{
+#btt_btn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,8 +48,10 @@ body{
     border: 3px solid black;
     border-radius: 26px;
     background-color: whitesmoke;
+    cursor: pointer;
     right: 1%;
     bottom: 2%;
+    z-index: 1000;
     position: fixed;
     img{
         width: 100%;

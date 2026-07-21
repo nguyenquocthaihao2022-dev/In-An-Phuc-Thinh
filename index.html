@@ -7,116 +7,68 @@
     <link rel="stylesheet" href="styles/giao_dien_chung.css">
     <link rel="stylesheet" href="styles/main_style.css">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 
 <body>
-    <div class="len_dau"><a href="#"><img src="Assets/icons/up-arrow.png" alt=""></a></div>
-    <header>
-        <a href="https://www.google.com/maps?q=10.825998,106.6060612&z=14&t=m&mapclient=embed" target="_blank"
-            class="location">22 QL1A, Tân Thới Nhất, Quận 12, Hồ Chí Minh</a>
-        <a target="_blank" class="email">ngx.thinh2011@gmail.com</a>
-        <a target="_blank" class="phone_number">0917331363</a>
-    </header>
-    <nav>
-        <img src="Assets/icons/Logo Phuc Thinh.png" alt="" class="logo">
-        <a href="index.html" class="nav_btn" id="cur_site">Trang chủ</a>
-        <a href="gioi_thieu.html" class="nav_btn">Giới thiệu</a>
-        <a href="bao_gia.html" class="nav_btn">Báo giá</a>
-        <a href="dich_vu.html" class="nav_btn">Dịch vụ</a>
-        <a href="tin_tuc.html" class="nav_btn">Tin tức</a>
-        <a href="lien_he_dat_hang.html" class="nav_btn">Liên hệ đặt hàng</a>
-        <a href="" class="search_btn"><img src="Assets/images/search.png" alt=""></a>
-    </nav>
     <img style="width: 99vw;" src="Assets/images/banner/banner-in-bao-li-xi-tet.webp" alt="">
-        <h1><blue>Danh mục</blue> in ấn</h1>
-        <div class="container">
-            <div id="items">
-                <a class="item">
-                    <div class="item_div">
-                        <img src="Assets/images/Danh_Muc_In_An/an-pham-catalogue-1-1024x1024.webp" alt="">
-                        <p>In Catalogue</p>
-                    </div>
-                </a>
-                <a class="item">
-                    <div class="item_div">
-                        <img src="Assets/images/Danh_Muc_In_An/an-pham-hop-giay-1-1024x1024.webp" alt="">
-                        <p>In Hộp Giấy</p>
-                    </div>
-                </a>
-                <a class="item">
-                    <div class="item_div">
-                        <img src="Assets/images/Danh_Muc_In_An/an-pham-name-card-01-1024x1024.webp" alt="">
-                        <p>In Name Card</p>
-                    </div>
-                </a>
-                <a class="item">
-                    <div class="item_div">
-                        <img src="Assets/images/Danh_Muc_In_An/an-pham-to-roi-1-1024x1024.webp" alt="">
-                        <p>In Tờ Rơi</p>
-                    </div>
-                </a>
-                <a class="item">
-                    <div class="item_div">
-                        <img src="Assets/images/Danh_Muc_In_An/an-pham-tui-giay-1-1024x1024.webp" alt="">
-                        <p>In Túi Giấy</p>
-                    </div>
-                </a>
+    <h1>
+        <blue>Danh mục</blue> in ấn
+    </h1>
+    <div class="wrapper">
+        <button onclick="manualSlide(-1,1)" class="slide_btn_left">&lt;</button>
+        <div class="slide_container">
+            <div class="container dich_vu">
             </div>
         </div>
-        <div class="main_content">
-            <h1>Ấn phẩm <blue>tờ rơi</blue></h1>
-            <div class="container">
-                <div id="items">
-                    <a href="to_roi_karaoke.html" class="item">
-                        <div class="item_div">
+        <button onclick="manualSlide(1,1)" class="slide_btn_right">&gt;</button>
+    </div>
+    <div class="main_content">
+        <h1>Ấn phẩm <blue>tờ rơi</blue>
+        </h1>
+        <div class="wrapper">
+            <button onclick="manualSlide(-1,2)" class="slide_btn_left">&lt;</button>
+            <div class="slide_container">
+                <div class="container">
+                    <div class="item_div">
+                        <a href="to_roi_karaoke.html" class="item">
                             <img src="Assets/images/An_Pham_To_Roi/to-roi-karaoke-1.webp" alt="">
                             <p>45+ Mẫu Tờ Rơi Karaoke, Quán Hát Đẹp, Độc Đáo & Bắt Mắt</p>
-                        </div>
-                    </a>
-                    <a class="item">
-                        <div class="item_div">
+                        </a>
+                    </div>
+                    <div class="item_div">
+                        <a class="item" href="to_roi_le_hoi.html">
                             <img src="Assets/images/An_Pham_To_Roi/to-roi-le-hoi.webp" alt="">
                             <p>99+ Mẫu Tờ Rơi Lễ Hội Đa Dạng, Đẹp & Ấn Tượng</p>
-                        </div>
-                    </a>
-                    <a class="item">
-                        <div class="item_div">
+                        </a>
+                    </div>
+                    <div class="item_div">
+                        <a class="item" href="to_roi_noel.html">
                             <img src="Assets/images/An_Pham_To_Roi/to-roi-noel-1.webp" alt="">
                             <p>33+ Mẫu Tờ Rơi Noel Cho Mùa Giáng Sinh Ý Nghĩa 2026</p>
-                        </div>
-                    </a>
-                    <a class="item">
-                    <div class="item_div">
-                        <img src="Assets/images/An_Pham_To_Roi/to-roi-thuoc-4.webp" alt="">
-                        <p>40+ Mẫu Tờ Rơi Thuốc Hiệu Quả, Uy Tín & Chuyên Nghiệp</p>
+                        </a>
                     </div>
-                </a>
-                <a class="item">
                     <div class="item_div">
-                        <img src="Assets/images/An_Pham_To_Roi/to-roi-tuyen-truyen-phong-chong-sot-xuat-huyet-2-1.webp" alt="">
-                        <p>55+ Mẫu Tờ Rơi Bảo Vệ Môi Trường Sáng Tạo & Ấn Tượng</p>
+                        <a class="item" href="to_roi_thuoc.html">
+                            <img src="Assets/images/An_Pham_To_Roi/to-roi-thuoc-4.webp" alt="">
+                            <p>40+ Mẫu Tờ Rơi Thuốc Hiệu Quả, Uy Tín & Chuyên Nghiệp</p>
+                        </a>
                     </div>
-                </a>
+                    <div class="item_div">
+                        <a class="item" href="to_roi_tuyen_truyen.html">
+                            <img src="Assets/images/An_Pham_To_Roi/to-roi-tuyen-truyen-phong-chong-sot-xuat-huyet-2-1.webp"
+                                alt="">
+                            <p>55+ Mẫu Tờ Rơi Bảo Vệ Môi Trường Sáng Tạo & Ấn Tượng</p>
+                        </a>
+                    </div>
+                </div>
             </div>
+            <button onclick="manualSlide(1,2)" class="slide_btn_right">&gt;</button>
         </div>
     </div>
-    <footer>
-        <div class="thong_tin">
-            <img src="Assets/icons/Logo Phuc Thinh.png" alt="" style="width: 200px;">
-            <h2>CÔNG TY TNHH IN ẤN TEM NHÃN PHÚC THỊNH</h2>
-            <p>Địa chỉ: 22 QL1A, Tân Thới Nhất, Quận 12, Hồ Chí Minh</p>
-            <p>Điện thoại: 0917331363</p>
-            <p>Email: ngx.thinh2011@gmail.com</p>
-        </div>
-        <div class="danh_muc">
-            <h2>Danh mục</h2>
-            <a href="index.html" class="nav_btn" id="cur_site">Trang chủ</a>
-            <a href="gioi_thieu.html" class="nav_btn">Giới thiệu</a>
-            <a href="bao_gia.html" class="nav_btn">Báo giá</a>
-            <a href="dich_vu.html" class="nav_btn">Dịch vụ</a>
-            <a href="tin_tuc.html" class="nav_btn">Tin tức</a>
-            <a href="lien_he_dat_hang.html" class="nav_btn">Liên hệ đặt hàng</a>
-        </div>
-    </footer>
+    <script src="Scripts/js_chung.js"></script>
+    <script type="module" src="Scripts/load_dich_vu.js"></script>
+    <script src="Scripts/app.js"></script>
 </body>
+
 </html>

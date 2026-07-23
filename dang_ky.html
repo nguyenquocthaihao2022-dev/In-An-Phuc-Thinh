@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/giao_dien_chung.css">
+    <link rel="stylesheet" href="styles/dang_ky_dang_nhap.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main_content" >
+        <div class="overlay">
+            <div class="dang_ky">
+                <h1>Đăng Ký</h1>
+                <form method="post" id="signup-form">
+                    <label for="signup-name">Tên Đăng Ký</label>
+                    <input type="text" id="signup-name" placeholder="Tên đăng ký" required>
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" placeholder="Email" required>
+                    <label for="signup-phone">Số Điện Thoại</label>
+                    <input type="tel" id="signup-phone" placeholder="Số điện thoại" required>
+                    <label for="signup-password">Mật Khẩu</label>
+                    <input type="password" id="signup-password" placeholder="Mật khẩu" required>
+                    <button type="submit">Đăng Ký</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="Scripts/js_chung.js"></script>
+    <script type="module" src="Scripts/sign_up_sign_in.js"></script>
+</body>
+</html>

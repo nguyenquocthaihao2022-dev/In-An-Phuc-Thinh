@@ -103,6 +103,7 @@ nav{
 .main_content{
     padding-top: 10px;
     background-color: #f5f7fa;
+    height: fit-content;
 }
 footer{
     display:grid;

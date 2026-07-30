@@ -12,16 +12,15 @@
         <div class="overlay">
             <div class="dang_nhap">
                 <h1>Đăng Nhập</h1>
-                <form>
-                    <label for="login-name">Tên Đăng Nhập</label>
-                    <input type="text" id="login-name" placeholder="Tên đăng nhập" required>
-                    <label for="login-password">Mật Khẩu</label>
-                    <input type="password" id="login-password" placeholder="Mật khẩu" required>
-                    <button type="submit">Đăng Nhập</button>
+                <form id="login_form" method="POST">
+                    <input type="email" name="login_email" placeholder="Email" required>
+                    <input type="password" name="login_password" placeholder="Mật khẩu" required>
+                    <button type="submit" id="submit_btn">Đăng Nhập</button>
                 </form>
             </div>
         </div>
     </div>
-    <script src="Scripts/js_chung.js"></script>
+    <script type="module" src="Scripts/js_chung.js"></script>
+    <script type="module" src="Scripts/dang_ky_dang_nhap.js"></script>
 </body>
 </html>

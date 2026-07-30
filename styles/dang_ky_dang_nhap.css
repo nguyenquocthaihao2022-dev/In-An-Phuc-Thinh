@@ -1,5 +1,5 @@
 .main_content{
-    background: url('/Assets/images/banner/may-in-letterpress.jpg') no-repeat center center / cover;
+    background: url('../Assets/images/banner/may-in-letterpress.jpg') no-repeat center center / cover;
     height: 100vh;
     padding: 0px;
 }
@@ -7,8 +7,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
     height: 100%;
     width: 100%;
 }
@@ -16,35 +16,76 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
     background-color: white;
     padding: 20px;
     border-radius: 25px;
     width: 300px;
-    height: 400px;
-    h1{
-        font-size:45px;
-        width: 100%;
-        text-align: center;
-    }
-    form{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
+    height: 400px;box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 
+            0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+}
+.dang_nhap h2, .dang_ky h2{
+    font-size:45px;
+    width: 100%;
+    text-align: center;
+}
+.dang_nhap form, .dang_ky form{
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.dang_nhap form * , .dang_ky form *{
+    border-radius: 10px;
 }
 .dang_nhap{
-    height: 350px;
+    height: 300px;
 }
 .dang_ky{
-    height: 500px;
+    height: 400px;
 }
 #submit_btn{
-    background-color: blue;
+    background-color: #2984eb;
     color: white;
     border: 1px solid #ccc;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
+    z-index: 10000;
+    font-size: larger;
+    font-weight: 500;
+  transition: all 0.3s ease; 
+}
+#submit_btn:hover{
+    background-color: #1E6FD9;
+    box-shadow: 0 4px 12px rgba(41, 132, 235, 0.1);
+    outline: #1E6FD9 solid 3px;
+    color: lightgray;
+}
+input {
+  width: 100%;
+  padding: 3px 5px;
+  font-size: 14px;
+  
+  /* Tạo viền trong suốt làm nền móng */
+  border: 2px solid transparent; 
+  border-radius: 8px; /* Bo góc mong muốn */
+  
+  /* Cấu hình background kép: Lớp trên màu trắng, lớp dưới là Gradient tạo viền */
+  background-image: linear-gradient(white, white), 
+                    linear-gradient(to right, #1E6FD9, #2984eb); 
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  
+  /* Hiệu ứng chuyển cảnh mượt mà */
+  transition: all 0.3s ease; 
+  outline: none;
+}
+
+/* Hiệu ứng khi click vào ô nhập liệu (Đổi màu Gradient rực rỡ hơn) */
+input:focus {
+  background-image: linear-gradient(white, white), 
+                    linear-gradient(to right, #1E6FD9, #2984eb); /* Đổi sang cụm màu khác nếu muốn */
+  box-shadow: 0 4px 12px rgba(41, 132, 235, 0.1); /* Thêm đổ bóng nhẹ hợp tông */
 }

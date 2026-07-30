@@ -54,6 +54,7 @@ form{
     background-color: #2554a6;
     color: white;
     font-size: 20px;
+    transition: all 0.3s ease;
 }
 .submit_btn:hover{
     background-color: orangered;
@@ -70,7 +71,7 @@ form{
     border-radius: 25px;
 }
 .box img{
-    height: 50%;
+    width: 75%;
     object-fit: cover;
     border-radius: 10px;
     align-self: center;

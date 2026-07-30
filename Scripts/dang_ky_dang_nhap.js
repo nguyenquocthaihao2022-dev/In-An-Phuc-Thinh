@@ -54,6 +54,7 @@ if (signupForm) {
         const phone = formData.get('signup_phone');
         const password = formData.get('signup_password');
         dang_ky(name, email, phone, password);
+        window.location.href = "./index.html";
     });
 }
 const loginForm = document.querySelector('#login_form');
@@ -65,5 +66,6 @@ if (loginForm) {
         const password = formData.get('login_password');
         console.log(email, password);
         dang_nhap(email, password);
+        window.location.href = "./index.html";
     });
 }

@@ -27,8 +27,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     Supabase.auth.onAuthStateChange((event, session) => {
     if (session) {
-        // Có session = user đang đăng nhập (hoặc vừa được tự động đăng nhập lại)
-        console.log("Trạng thái hiện tại:", event, session.user)
         const btnToSignin = document.getElementById('btn_to_signin');
         const btnToSignup = document.getElementById('btn_to_signup');
         const btnToOrders = document.getElementById('btn_to_orders');

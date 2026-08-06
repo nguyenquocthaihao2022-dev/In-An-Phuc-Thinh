@@ -46,26 +46,26 @@ async function dang_nhap(email, password) {
 
 const signupForm = document.querySelector('#signup_form');
 if (signupForm) {
-    signupForm.addEventListener('submit', (event) => {
+    signupForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         const formData = new FormData(signupForm);
         const name = formData.get('signup_name');
         const email = formData.get('signup_email');
         const phone = formData.get('signup_phone');
         const password = formData.get('signup_password');
-        dang_ky(name, email, phone, password);
-        window.location.href = "./index.html";
+        await dang_ky(name, email, phone, password);
+        window.location.href = "./index.html"
     });
 }
 const loginForm = document.querySelector('#login_form');
 if (loginForm) {
-    loginForm.addEventListener('submit', (event) => {
+    loginForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         const formData = new FormData(loginForm);
         const email = formData.get('login_email');
         const password = formData.get('login_password');
         console.log(email, password);
-        dang_nhap(email, password);
-        window.location.href = "./index.html";
+        await dang_nhap(email, password);
+        window.location.href = "./index.html"
     });
 }

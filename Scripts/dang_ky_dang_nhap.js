@@ -1,16 +1,10 @@
 import { Supabase } from "./supabase.js"
 
-async function dang_ky(name, email, phone, password) {
+async function dang_ky(email, password) {
     try {
         const { data, error } = await Supabase.auth.signUp({
             email: email,
-            password: password,
-            options: {
-                data: {
-                    phone: phone,
-                    name: name
-                }
-            }
+            password: password
         });
 
         if (error) {
@@ -18,6 +12,7 @@ async function dang_ky(name, email, phone, password) {
             alert('Đăng ký thất bại: ' + error.message);
         } else {
             alert('Đăng ký thành công!');
+            window.location.href = "./index.html"
         }
     } catch (err) {
         console.error('Lỗi đăng ký:', err);
@@ -36,7 +31,7 @@ async function dang_nhap(email, password) {
             alert('Đăng nhập thất bại: ' + error.message);
         } else {
             alert('Đăng nhập thành công!');
-            console.log(data.user);
+            window.location.href = "./index.html"
         }
     } catch (err) {
         console.error('Lỗi đăng nhập:', err);
@@ -49,12 +44,9 @@ if (signupForm) {
     signupForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         const formData = new FormData(signupForm);
-        const name = formData.get('signup_name');
         const email = formData.get('signup_email');
-        const phone = formData.get('signup_phone');
         const password = formData.get('signup_password');
-        await dang_ky(name, email, phone, password);
-        window.location.href = "./index.html"
+        await dang_ky(email, password);
     });
 }
 const loginForm = document.querySelector('#login_form');
@@ -66,6 +58,5 @@ if (loginForm) {
         const password = formData.get('login_password');
         console.log(email, password);
         await dang_nhap(email, password);
-        window.location.href = "./index.html"
     });
 }

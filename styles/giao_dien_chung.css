@@ -83,11 +83,35 @@ nav{
     height: 100px;
     width: calc(100vw - 24px);
 }
+.news_menu_wrapper{
+    align-self: baseline ;
+    position: relative;
+    width: 130px;
+    height: 200px;
+}
+.news_menu_wrapper p{
+    font-size: large;
+    padding-top: 25px;
+    cursor: pointer;
+}
+.news_menu_wrapper ul{
+    position: absolute;
+    left: -15px;
+    width: 120px;
+    background-color: white;
+    border: 2px solid #333;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    z-index: 99;
+    list-style: none;
+}
 .logo{
     height: 80px;
 }
 .nav_btn{
-    font-size: 25px;
+    font-size: 20px;
+    font-weight: bold;
     text-decoration: none;
     color: black;
 }

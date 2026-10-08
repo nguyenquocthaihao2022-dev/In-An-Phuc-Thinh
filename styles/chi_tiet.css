@@ -1,9 +1,9 @@
 .content-box{
     display: flex;
     flex-direction: column;
-    width: 80vw;
+    width: 100vw;
     height: fit-content;
-    padding: 20px 10vw;
+    padding: 20px 15vw;
 }
 .content-box img{
     width: 80%;

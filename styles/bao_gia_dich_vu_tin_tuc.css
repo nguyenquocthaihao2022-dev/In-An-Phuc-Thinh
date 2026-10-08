@@ -8,11 +8,6 @@
     height: fit-content;
     padding: 0px 10vw;
 }
-.item{
-    width: 32%;
-    height: fit-content();
-    border-bottom: #dcdde0 2px solid;
-}
 .item img{
     width: 100%;
     height: 50%;
@@ -45,11 +40,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-.item_div img{
-    margin-top: 10px;
-    width: 80%;
-    border-radius: 10px;
+    border-bottom: #dcdde0 2px solid;
 }
 .item:hover{
     cursor: pointer;

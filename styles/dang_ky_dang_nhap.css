@@ -20,7 +20,8 @@
     padding: 20px;
     border-radius: 25px;
     width: 300px;
-    height: 400px;box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 
+    height: 320px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 
             0 8px 10px -6px rgba(0, 0, 0, 0.1);
 
 }
@@ -39,11 +40,12 @@
 .dang_nhap form * , .dang_ky form *{
     border-radius: 10px;
 }
-.dang_nhap{
-    height: 300px;
-}
-.dang_ky{
-    height: 400px;
+.dang_nhap p, .dang_ky p{
+    width: 100%;
+    border-top: 3px solid lightgray;
+    padding-top: 10px;
+    margin-top: 10px;
+    text-align: center;
 }
 #submit_btn{
     background-color: #2984eb;

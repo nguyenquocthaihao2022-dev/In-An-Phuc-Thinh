@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đăng nhập – Phúc Thịnh Labels</title>
+<meta name="description" content="Đăng nhập hoặc tạo tài khoản Phúc Thịnh Labels.">
+<link rel="icon" href="Assets/icons/App Logo.jpg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main>
+
+<section class="sec"><div class="wrap auth"><div class="panel">
+  <div class="tabs"><button type="button" data-mode="in" class="on">Đăng nhập</button><button type="button" data-mode="up">Đăng ký</button></div>
+  <form id="auth-form">
+    <label>Email<input type="email" name="email" required autocomplete="email"></label>
+    <label>Mật khẩu<input type="password" name="password" required minlength="6" autocomplete="current-password"></label>
+    <button class="btn" id="go">Đăng nhập</button>
+  </form>
+  <p class="or">hoặc</p>
+  <button type="button" class="btn alt" id="google">Tiếp tục với Google</button>
+  <p id="msg" role="status"></p>
+</div></div></section>
+</main>
+<script type="module" src="js/app.js"></script>
+<script type="module" src="js/dang-nhap.js"></script>
+</body>
+</html>

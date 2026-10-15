@@ -1,5 +1,6 @@
 // Dùng chung cho mọi trang: header, footer, nút nổi, danh sách thẻ.
 import { SITE as S, PRODUCTS, FLYERS, NEWS } from './data.js';
+import { Supabase as sb } from './supabase.js';
 
 const $ = (s) => document.querySelector(s);
 const page = location.pathname.split('/').pop() || 'index.html';
@@ -41,7 +42,7 @@ up.onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
 $('#auth').onclick = async (e) => {
   if (!logged) return;
   e.preventDefault();
-  await (await import('./supabase.js')).Supabase.auth.signOut();
+  await sb.auth.signOut();
   location.href = 'index.html';
 };
 

@@ -21,29 +21,12 @@ $('#auth-form').onsubmit = async (e) => {
   try {
     const { email, password } = Object.fromEntries(new FormData(e.target));
 
-    // CHỈ KIỂM TRA KHI ĐANG Ở CHẾ ĐỘ ĐĂNG KÝ (SIGN UP)
-    if (mode !== 'in') {
-      // Gọi hàm SQL vừa tạo qua RPC
-      const { data: isEmailTaken, error: rpcError } = await sb.rpc('check_email_exists', { 
-        user_email: email 
-      });
-
-      if (rpcError) {
-        console.error(rpcError);
-      } else if (isEmailTaken) {
-        // Nếu email đã tồn tại, chặn lại ngay lập tức và báo lỗi
-        say('Email này đã được liên kết với một tài khoản khác.', 'err');
-        if (submitBtn) submitBtn.disabled = false;
-        return; 
-      }
-    }
-
     // Nếu email chưa tồn tại hoặc đang ở chế độ đăng nhập -> Chạy tiếp luồng cũ
     const { data, error } = await (mode === 'in' 
       ? sb.auth.signInWithPassword({ email, password }) 
       : sb.auth.signUp({ email, password })
     );
-
+    if (mode === 'up' && data.user?.identities?.length === 0) return say('Email này đã được đăng ký. Hãy chuyển sang tab Đăng nhập.', 'err');
     if (error) return say(vi(error.message), 'err');
     if (!data.session) return say('Đã gửi email xác nhận. Vui lòng kiểm tra hộp thư.', 'ok');
     

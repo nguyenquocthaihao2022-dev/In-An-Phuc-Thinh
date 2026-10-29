@@ -21,6 +21,7 @@ document.body.insertAdjacentHTML('afterbegin', `
   <div class="menu">${NAV.map(link).join('')}
     <a href="${logged ? '#' : 'dang-nhap.html'}" id="auth">${logged ? 'Đăng xuất' : 'Đăng nhập'}</a>
     <a href="bao-gia.html" class="btn">Nhận báo giá</a>
+    ${user?.app_metadata?.app_role === 'admin' ? '<a href="admin.html" class="btn alt">Quản trị</a>' : ''}
   </div>
 </div></nav>`);
 
@@ -33,7 +34,6 @@ document.body.insertAdjacentHTML('beforeend', `
 <div class="float">
   <a href="https://zalo.me/${S.phone}" target="_blank" rel="noopener" class="zalo">Zalo</a>
   <a href="tel:${S.phone}" class="call">📞 Gọi ngay</a>
-  ${user?.app_metadata?.app_role === 'admin' ? '<a href="admin.html" class="btn alt">Quản trị</a>' : ''}
   <button id="up" aria-label="Lên đầu trang" hidden>↑</button>
 </div>`);
 

@@ -1,6 +1,6 @@
-// Dùng chung cho mọi trang: header, footer, nút nổi, danh sách thẻ.
 import { SITE as S, PRODUCTS, FLYERS, NEWS } from './data.js';
 import { Supabase as sb } from './supabase.js';
+import { items } from './store.js';
 
 const $ = (s) => document.querySelector(s);
 const page = location.pathname.split('/').pop() || 'index.html';
@@ -52,6 +52,5 @@ const card = (p) => {
   const body = `<img src="${p.img}" alt="${p.name}" loading="lazy"><div class="cb"><h3>${p.name}</h3>${p.desc ? `<p>${p.desc}</p>` : ''}${href ? `<span class="more">${p.cta || 'Nhận báo giá'} →</span>` : ''}</div>`;
   return href ? `<a class="card" href="${href}">${body}</a>` : `<article class="card">${body}</article>`;
 };
-const DATA = { products: PRODUCTS, flyers: FLYERS, news: NEWS };
-document.querySelectorAll('[data-list]').forEach((el) => (el.innerHTML = DATA[el.dataset.list].map(card).join('')));
+document.querySelectorAll('[data-list]').forEach(async (el) => (el.innerHTML = (await items(el.dataset.list)).map(card).join('')));
 document.querySelectorAll('[data-cta]').forEach((el) => (el.innerHTML = `<div class="band"><div><h2>Cần in gấp hoặc chưa biết chọn loại nào?</h2><p>Gọi ${S.phoneText} hoặc gửi yêu cầu để được tư vấn.</p></div><div class="cta"><a class="btn" href="tel:${S.phone}">Gọi ngay</a><a class="btn alt" href="bao-gia.html">Gửi yêu cầu</a></div></div>`));

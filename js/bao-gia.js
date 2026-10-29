@@ -1,8 +1,10 @@
-import { SITE as S, PRODUCTS } from './data.js';
+import { SITE as S } from './data.js';
+import { items } from './store.js';
 import { Supabase } from './supabase.js';
 
 const f = document.getElementById('quote'), msg = document.getElementById('msg'), q = new URLSearchParams(location.search);
 const say = (t, cls = '') => { msg.textContent = t; msg.className = cls; };
+const PRODUCTS = await items('products');
 
 f.sp.innerHTML = '<option value="">Chọn loại ấn phẩm…</option>' + [...PRODUCTS.map((p) => p.name), 'Khác'].map((n) => `<option>${n}</option>`).join('');
 f.sp.value = PRODUCTS.find((p) => p.id === q.get('sp'))?.name ?? '';

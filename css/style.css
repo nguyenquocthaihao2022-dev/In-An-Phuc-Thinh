@@ -103,3 +103,6 @@ footer a{display:block;padding:2px 0}footer a:hover{color:var(--gold)}
 .hero-in,.two,.two.half,.fgrid,.summary-content{grid-template-columns:1fr}
 .sec{padding:44px 0}.band{padding:28px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.tbl{width:100%;border-collapse:collapse;font-size:.9rem}.tbl th,.tbl td{padding:8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl button{padding:4px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}
+input[type=checkbox]{display:inline;width:auto;margin-right:8px}#list{overflow-x:auto}

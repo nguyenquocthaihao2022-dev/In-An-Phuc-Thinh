@@ -8,6 +8,7 @@ const NAV = [['index.html', 'Trang chủ'], ['index.html#san-pham', 'Sản phẩ
 const link = ([h, t]) => `<a href="${h}"${h === page ? ' class="on"' : ''}>${t}</a>`;
 // Supabase lưu phiên đăng nhập trong localStorage → không cần tải thư viện ở mọi trang.
 const logged = (() => { try { return Object.keys(localStorage).some((k) => /^sb-.+-auth-token$/.test(k)); } catch { return false; } })();
+const { data: { user } } = await sb.auth.getUser();
 
 document.body.insertAdjacentHTML('afterbegin', `
 <div class="top"><div class="wrap">
@@ -32,6 +33,7 @@ document.body.insertAdjacentHTML('beforeend', `
 <div class="float">
   <a href="https://zalo.me/${S.phone}" target="_blank" rel="noopener" class="zalo">Zalo</a>
   <a href="tel:${S.phone}" class="call">📞 Gọi ngay</a>
+  ${user?.app_metadata?.app_role === 'admin' ? '<a href="admin.html" class="btn alt">Quản trị</a>' : ''}
   <button id="up" aria-label="Lên đầu trang" hidden>↑</button>
 </div>`);
 

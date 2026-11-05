@@ -32,7 +32,8 @@ const upload = async (file) => {
 const TABLES = {
   lien_he: {
     label: "Liên hệ",
-    cols: ["Họ tên", "Số điện thoại", "Loại sản phẩm", "Số lượng", "Nội dung"],
+    cols_labels: ["Họ tên", "Số điện thoại", "Loại sản phẩm", "Số lượng", "Nội dung"],
+    cols: ["name", "phone_number", "product_type", "quantity", "information"],
     fields: [
       ["name", "Họ tên"],
       ["phone_number", "Số điện thoại", "tel"],
@@ -43,7 +44,8 @@ const TABLES = {
   },
   san_pham: {
     label: "Sản phẩm",
-    cols: ["Tên", "Mã", "Thứ tự", "Hiển thị"],
+    cols_labels: ["Tên", "Mã", "Thứ tự", "Hiển thị"],
+    cols: ["ten", "slug", "thu_tu", "hien"],
     fields: [
       ["ten", "Tên"],
       ["slug", "Mã (không dấu, vd: tem-nhan)"],
@@ -54,7 +56,8 @@ const TABLES = {
   },
   kien_thuc: {
     label: "Kiến thức",
-    cols: ["Tiêu đề", "Mô tả", "Hiển thị"],
+    cols_labels: ["Tiêu đề", "Mô tả", "Hiển thị"],
+    cols: ["ten", "mo_ta", "hien"],
     fields: [
       ["ten", "Tiêu đề"],
       ["anh", "Ảnh", "image"],
@@ -110,7 +113,7 @@ const render = async () => {
     .order("created_at", { ascending: false });
   $("#list").innerHTML = error
     ? `<p id="msg" class="err">${esc(error.message)}</p>`
-    : `<table class="tbl"><tr>${t.cols.map((c) => `<th>${c}</th>`).join("")}<th></th></tr>${data
+    : `<table class="tbl"><tr>${t.cols_labels.map((l) => `<th>${l}</th>`).join("")}<th></th></tr>${data
         .map(
           (r) =>
             `<tr>${t.cols.map((c) => `<td>${esc(r[c])}</td>`).join("")}<td><button data-e="${r.id}">Sửa</button> <button data-d="${r.id}">Xóa</button></td></tr>`,

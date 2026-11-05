@@ -817,3 +817,12 @@ input[type=checkbox] {
     margin-top: 8px;
     border-radius: 12px
 }
+
+#ed {
+    min-height: 320px
+}
+
+.ql-editor {
+    font-size: 1rem;
+    min-height: 320px
+}

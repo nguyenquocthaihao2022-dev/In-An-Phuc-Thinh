@@ -1,38 +1,21 @@
 import { Supabase as sb } from "./supabase.js";
-import { items } from './store.js';
+import { upload } from "./upload-anh.js";
+import { items } from "./store.js";
 
-const PRODUCTS = await items('products');
+const PRODUCTS = await items("products");
 const $ = (s) => document.querySelector(s);
 const esc = (v) =>
   String(v ?? "").replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
-const toWebp = (file, max = 1200) =>
-  new Promise((ok) => {
-    const img = new Image();
-    img.onload = () => {
-      const s = Math.min(1, max / Math.max(img.width, img.height));
-      const c = Object.assign(document.createElement("canvas"), {
-        width: img.width * s,
-        height: img.height * s,
-      });
-      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
-      c.toBlob(ok, "image/webp", 0.85);
-    };
-    img.src = URL.createObjectURL(file);
-  });
-
-const upload = async (file) => {
-  const blob = await toWebp(file);
-  const path = `${tab}/${crypto.randomUUID()}.${blob.type.split("/")[1]}`;
-  const { error } = await sb.storage
-    .from("anh")
-    .upload(path, blob, { contentType: blob.type, cacheControl: "31536000" });
-  if (error) throw error;
-  return sb.storage.from("anh").getPublicUrl(path).data.publicUrl;
-};
 const TABLES = {
   lien_he: {
     label: "Liên hệ",
-    cols_labels: ["Họ tên", "Số điện thoại", "Loại sản phẩm", "Số lượng", "Nội dung"],
+    cols_labels: [
+      "Họ tên",
+      "Số điện thoại",
+      "Loại sản phẩm",
+      "Số lượng",
+      "Nội dung",
+    ],
     cols: ["name", "phone_number", "product_type", "quantity", "information"],
     fields: [
       ["name", "Họ tên"],
@@ -80,17 +63,19 @@ const form = () => {
             ? `<label><input type="checkbox" name="${k}" checked>${l}</label>`
             : type === "image"
               ? `<label>${l}<input type="file" id="file" accept="image/*"><input type="hidden" name="${k}"><img id="pv" alt="" hidden></label>`
-              : type === 'tel'
+              : type === "tel"
                 ? `<label>${l}<input type="tel" name="${k}" inputmode="tel" required pattern="[0-9 +.]{9,16}" autocomplete="tel"></label>`
                 : type === "products"
-                  ? `<label>${l}<select name="${k}">'<option value="">Chọn loại ấn phẩm…</option>'${[...PRODUCTS.map((p) => p.name), 'Khác'].map((n) => `<option>${n}</option>`).join('')}</select></label>`
+                  ? `<label>${l}<select name="${k}">'<option value="">Chọn loại ấn phẩm…</option>'${[...PRODUCTS.map((p) => p.name), "Khác"].map((n) => `<option>${n}</option>`).join("")}</select></label>`
                   : `<label>${l}<input name="${k}" type="${type}"${type === "number" ? ' value="0"' : ""}></label>`,
       )
       .join("") +
-    '<button class="btn">Lưu</button> <button type="button" class="btn alt" id="cancel">Hủy</button>';
+    `<td>${tab !== "lien_he" ? `<a href="soan.html?t=${tab}&id=${r.id}">Nội dung</a> ` : ""}<button data-e="${r.id}">Sửa</button> <button data-d="${r.id}">Xóa</button></td>`;
   $("#cancel").onclick = () => {
-    editing = null;
-    form();
+    if (confirm("Hủy thay đổi?")) {
+      editing = null;
+      form();
+    }
   };
   if ($("#file"))
     $("#file").onchange = (e) => {
@@ -179,17 +164,20 @@ $("#f").onsubmit = async (e) => {
   const file = $("#file")?.files[0];
   if (file) {
     try {
-      row.anh = await upload(file);
+      row.anh = await upload(file, tab);
     } catch (err) {
       return alert("Tải ảnh lỗi: " + err.message);
     }
   }
   if ("anh" in row && !row.anh) return alert("Vui lòng chọn ảnh.");
-  const { error } = await (editing
+  const { data, error } = await (editing
     ? sb.from(tab).update(row).eq("id", editing)
-    : sb.from(tab).insert(row));
+    : sb.from(tab).insert(row).select("id").single());
   if (error) return alert(error.message);
+  if (!editing && tab !== "lien_he")
+    return (location.href = `soan.html?t=${tab}&id=${data.id}`);
   editing = null;
+  alert('Dữ liệu đã được cập nhật');
   form();
   render();
 };

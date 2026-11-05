@@ -20,6 +20,7 @@ document.body.insertAdjacentHTML('afterbegin', `
   <button class="burger" aria-label="Mở menu" aria-expanded="false">☰</button>
   <div class="menu">${NAV.map(link).join('')}
     <a href="${logged ? '#' : 'dang-nhap.html'}" id="auth">${logged ? 'Đăng xuất' : 'Đăng nhập'}</a>
+    <input type="text" placeholder="Tìm kiếm..." class="search" />
     <a href="bao-gia.html" class="btn">Nhận báo giá</a>
     ${user?.app_metadata?.app_role === 'admin' ? '<a href="admin.html" class="btn alt">Quản trị</a>' : ''}
   </div>
@@ -37,7 +38,7 @@ document.body.insertAdjacentHTML('beforeend', `
   <button id="up" aria-label="Lên đầu trang" hidden>↑</button>
 </div>`);
 
-const burger = $('.burger'), menu = $('.menu'), up = $('#up');
+const burger = $('.burger'), menu = $('.menu'), up = $('#up'), search = $('.search');
 burger.onclick = () => burger.setAttribute('aria-expanded', menu.classList.toggle('open'));
 addEventListener('scroll', () => (up.hidden = scrollY < 500), { passive: true });
 up.onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
@@ -47,6 +48,13 @@ $('#auth').onclick = async (e) => {
   await sb.auth.signOut();
   location.href = 'index.html';
 };
+search.addEventListener('input', (e) => {
+  const term = e.target.value.toLowerCase();
+  document.querySelectorAll('.card').forEach((card) => {
+    const text = card.textContent.toLowerCase();
+    card.style.display = text.includes(term) ? 'block' : 'none';
+  });
+});
 
 // Thẻ sản phẩm / bài viết: có liên kết thì thành <a>, không thì <article>.
 const card = (p) => {

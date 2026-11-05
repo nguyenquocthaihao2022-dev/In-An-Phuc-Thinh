@@ -13,7 +13,7 @@ export async function items(key) {
       const { Supabase } = await import('./supabase.js');
       const { data } = await Supabase.from(table).select(cols).eq('hien', true).order('thu_tu').order('created_at');
       if (data?.length) return data.map(map);
-    } catch {}
+    } catch { }
   }
   return DATA[key];
 }

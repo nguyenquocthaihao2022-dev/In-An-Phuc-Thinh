@@ -11,10 +11,14 @@ async function start() {
   $('#tt').textContent = 'Soạn nội dung: ' + row.ten;
   $('#xem').href = `chi-tiet.html?t=${t}&id=${id}`;
 
-  const quill = new Quill('#ed', { theme: 'snow', modules: { toolbar: {
-    container: [[{ header: [2, 3, false] }], ['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['link', 'image'], ['clean']],
-    handlers: { image: pickImage },
-  } } });
+  const quill = new Quill('#ed', {
+    theme: 'snow', modules: {
+      toolbar: {
+        container: [[{ header: [2, 3, false] }], ['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['link', 'image'], ['clean']],
+        handlers: { image: pickImage },
+      }
+    }
+  });
   quill.clipboard.dangerouslyPasteHTML(row.noi_dung ?? '');
 
   function pickImage() {

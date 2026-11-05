@@ -23,12 +23,12 @@ document.getElementById("show-password").onchange = (e) => {
 
 tabs.forEach(
   (b) =>
-    (b.onclick = () => {
-      mode = b.dataset.mode;
-      tabs.forEach((x) => x.classList.toggle("on", x === b));
-      $("#go").textContent = mode === "in" ? "Đăng nhập" : "Tạo tài khoản";
-      say("");
-    }),
+  (b.onclick = () => {
+    mode = b.dataset.mode;
+    tabs.forEach((x) => x.classList.toggle("on", x === b));
+    $("#go").textContent = mode === "in" ? "Đăng nhập" : "Tạo tài khoản";
+    say("");
+  }),
 );
 
 $("#auth-form").onsubmit = async (e) => {

@@ -99,11 +99,11 @@ const render = async () => {
   $("#list").innerHTML = error
     ? `<p id="msg" class="err">${esc(error.message)}</p>`
     : `<table class="tbl"><tr>${t.cols_labels.map((l) => `<th>${l}</th>`).join("")}<th></th></tr>${data
-        .map(
-          (r) =>
-            `<tr>${t.cols.map((c) => `<td>${esc(r[c])}</td>`).join("")}<td>${tab !== "lien_he" ? `<a href="soan.html?t=${tab}&id=${r.id}">Nội dung</a> ` : ""}<button data-e="${r.id}">Sửa</button> <button data-d="${r.id}">Xóa</button></td></tr>`,
-        )
-        .join("")}</table>`;
+      .map(
+        (r) =>
+          `<tr>${t.cols.map((c) => `<td>${esc(r[c])}</td>`).join("")}<td>${tab !== "lien_he" ? `<a href="soan.html?t=${tab}&id=${r.id}">Nội dung</a> ` : ""}<button data-e="${r.id}">Sửa</button> <button data-d="${r.id}">Xóa</button></td></tr>`,
+      )
+      .join("")}</table>`;
 };
 
 $("#tabs").innerHTML = Object.entries(TABLES)

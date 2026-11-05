@@ -70,7 +70,7 @@ const form = () => {
                   : `<label>${l}<input name="${k}" type="${type}"${type === "number" ? ' value="0"' : ""}></label>`,
       )
       .join("") +
-    `<td>${tab !== "lien_he" ? `<a href="soan.html?t=${tab}&id=${r.id}">Nội dung</a> ` : ""}<button data-e="${r.id}">Sửa</button> <button data-d="${r.id}">Xóa</button></td>`;
+    '<button class="btn">Lưu</button> <button type="button" class="btn alt" id="cancel">Hủy</button>';
   $("#cancel").onclick = () => {
     if (confirm("Hủy thay đổi?")) {
       editing = null;
@@ -98,10 +98,10 @@ const render = async () => {
     .order("created_at", { ascending: false });
   $("#list").innerHTML = error
     ? `<p id="msg" class="err">${esc(error.message)}</p>`
-    : `<table class="tbl"><tr>${t.cols_labels.map((l) => `<th>${l}</th>`).join("")}<th></th></tr>${data
+    : `<table class="tbl"><tr>${t.cols.map((c) => `<th>${c}</th>`).join("")}<th></th></tr>${data
         .map(
           (r) =>
-            `<tr>${t.cols.map((c) => `<td>${esc(r[c])}</td>`).join("")}<td><button data-e="${r.id}">Sửa</button> <button data-d="${r.id}">Xóa</button></td></tr>`,
+            `<tr>${t.cols.map((c) => `<td>${esc(r[c])}</td>`).join("")}<td>${tab !== "lien_he" ? `<a href="soan.html?t=${tab}&id=${r.id}">Nội dung</a> ` : ""}<button data-e="${r.id}">Sửa</button> <button data-d="${r.id}">Xóa</button></td></tr>`,
         )
         .join("")}</table>`;
 };
@@ -177,7 +177,7 @@ $("#f").onsubmit = async (e) => {
   if (!editing && tab !== "lien_he")
     return (location.href = `soan.html?t=${tab}&id=${data.id}`);
   editing = null;
-  alert('Dữ liệu đã được cập nhật');
+  alert("Dữ liệu đã được cập nhật");
   form();
   render();
 };

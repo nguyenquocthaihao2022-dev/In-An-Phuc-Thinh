@@ -1,5 +1,5 @@
 import { Supabase as sb } from './supabase.js';
-import { upload } from './anh.js';
+import { upload } from './upload-anh.js';
 
 const $ = (s) => document.querySelector(s);
 const q = new URLSearchParams(location.search), t = q.get('t'), id = q.get('id');

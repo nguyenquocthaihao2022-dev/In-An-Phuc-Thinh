@@ -1,5 +1,5 @@
 import { Supabase as sb } from './supabase.js';
-import { upload } from './upload-anh.js';
+import { upload } from './anh.js';
 
 const $ = (s) => document.querySelector(s);
 const q = new URLSearchParams(location.search), t = q.get('t'), id = q.get('id');
@@ -11,28 +11,35 @@ async function start() {
   $('#tt').textContent = 'Soạn nội dung: ' + row.ten;
   $('#xem').href = `chi-tiet.html?t=${t}&id=${id}`;
 
-  const quill = new Quill('#ed', {
-    theme: 'snow', modules: {
-      toolbar: {
-        container: [[{ header: [2, 3, false] }], ['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['link', 'image'], ['clean']],
-        handlers: { image: pickImage },
-      }
-    }
+  const editor = SUNEDITOR.create('ed', {
+    height: 'auto',
+    minHeight: '360px',
+    defaultTag: 'p',
+    formats: ['p', 'h2', 'h3', 'blockquote'],
+    buttonList: [
+      ['undo', 'redo'],
+      ['formatBlock', 'bold', 'italic', 'underline', 'removeFormat'],
+      ['align', 'list', 'link', 'image'],
+      ['fullScreen', 'codeView'],
+    ],
   });
-  quill.clipboard.dangerouslyPasteHTML(row.noi_dung ?? '');
+  editor.setContents(row.noi_dung ?? '');
 
-  function pickImage() {
-    const inp = Object.assign(document.createElement('input'), { type: 'file', accept: 'image/*' });
-    inp.onchange = async () => {
-      try { quill.insertEmbed(quill.getSelection(true).index, 'image', await upload(inp.files[0], 'noi_dung')); }
-      catch (e) { say('Tải ảnh lỗi: ' + e.message, 'err'); }
-    };
-    inp.click();
-  }
+  // Ảnh: nén, tải lên Storage rồi chèn URL (không nhúng base64 vào database)
+  editor.onImageUploadBefore = (files, info, core, uploadHandler) => {
+    Promise.all([...files].map(async (f) => ({ url: await upload(f, 'noi_dung'), name: f.name, size: f.size })))
+      .then((result) => uploadHandler({ result }))
+      .catch((e) => uploadHandler({ errorMessage: 'Tải ảnh lỗi: ' + e.message, result: [] }));
+    // Không return gì: việc chèn ảnh do uploadHandler đảm nhiệm
+  };
 
   $('#save').onclick = async () => {
-    const { error } = await sb.from(t).update({ noi_dung: quill.getSemanticHTML() }).eq('id', id);
-    error ? say(error.message, 'err') : say('Đã lưu.', 'ok');
+    const html = editor.getContents(true);
+    if (/src=["']data:/i.test(html)) return say('Có ảnh chưa được tải lên Storage. Hãy xóa và chèn lại bằng nút ảnh.', 'err');
+    const { error } = await sb.from(t).update({ noi_dung: html }).eq('id', id);
+    if (error) return say(error.message, 'err');
+    say('Đã lưu. Trang công khai sẽ cập nhật sau khoảng 1–2 phút.', 'ok');
+    sb.functions.invoke('publish');
   };
 }
 

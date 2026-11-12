@@ -43,6 +43,7 @@ const TABLES = {
     cols: ["ten", "mo_ta", "hien"],
     fields: [
       ["ten", "Tiêu đề"],
+      ["slug", "Mã bài (không dấu, vd: ep-kim-la-gi)"],
       ["anh", "Ảnh", "image"],
       ["mo_ta", "Mô tả", "textarea"],
       ["thu_tu", "Thứ tự", "number"],

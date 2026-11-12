@@ -16,7 +16,7 @@ document.body.insertAdjacentHTML('afterbegin', `
   <span><a href="tel:${S.phone}">📞 ${S.phoneText}</a> &nbsp;·&nbsp; <a href="mailto:${S.email}">✉️ ${S.email}</a></span>
 </div></div>
 <nav class="bar"><div class="wrap">
-  <a href="index.html" class="logo"><img src="Assets/icons/Logo Phuc Thinh.jpg" alt="${S.name}"></a>
+  <a href="index.html" class="logo"><img src="Assets/icons/Logo-Phuc-Thinh.jpg" alt="${S.name}"></a>
   <button class="burger" aria-label="Mở menu" aria-expanded="false">☰</button>
   <div class="menu">${NAV.map(link).join('')}
     <a href="${logged ? '#' : 'dang-nhap.html'}" id="auth">${logged ? 'Đăng xuất' : 'Đăng nhập'}</a>
@@ -28,7 +28,7 @@ document.body.insertAdjacentHTML('afterbegin', `
 
 document.body.insertAdjacentHTML('beforeend', `
 <footer><div class="wrap fgrid">
-  <div><img src="Assets/icons/Logo Phuc Thinh.jpg" alt="" class="flogo"><h3>${S.company}</h3><p>${S.addr}</p></div>
+  <div><img src="Assets/icons/Logo-Phuc-Thinh.jpg" alt="" class="flogo"><h3>${S.company}</h3><p>${S.addr}</p></div>
   <div><h3>Liên kết</h3>${NAV.map(link).join('')}<a href="bao-gia.html">Nhận báo giá</a></div>
   <div><h3>Liên hệ</h3><a href="tel:${S.phone}">📞 ${S.phoneText}</a><a href="mailto:${S.email}">✉️ ${S.email}</a><a>⏰ Giờ làm việc: ${S.hours}</a></div>
 </div><p class="copy">© ${new Date().getFullYear()} ${S.name}. Bảo lưu mọi quyền.</p></footer>

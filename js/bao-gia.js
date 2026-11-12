@@ -11,7 +11,7 @@ f.sp.value = PRODUCTS.find((p) => p.id === q.get('sp'))?.name ?? '';
 f.nd.value = q.get('nd') ?? '';
 try { const m = JSON.parse(localStorage.pt_kh || '{}'); f.ten.value = m.ten ?? ''; f.sdt.value = m.sdt ?? ''; } catch { }
 
-document.getElementById('side').innerHTML = `<img src="Assets/icons/Logo Phuc Thinh.jpg" alt="${S.name}"><h3>Liên hệ trực tiếp</h3>
+document.getElementById('side').innerHTML = `<img src="Assets/icons/Logo-Phuc-Thinh.jpg" alt="${S.name}"><h3>Liên hệ trực tiếp</h3>
 <p>⏰ Giờ làm việc: ${S.hours}</p><p>📞 <a href="tel:${S.phone}"><b>${S.phoneText}</b></a></p>
 <p>✉️ <a href="mailto:${S.email}">${S.email}</a></p><p>📍 <a href="${S.map}" target="_blank" rel="noopener">${S.addr}</a></p>
 <a class="btn alt" href="https://zalo.me/${S.phone}" target="_blank" rel="noopener">Chat Zalo</a>`;

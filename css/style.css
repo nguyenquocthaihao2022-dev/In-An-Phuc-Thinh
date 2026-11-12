@@ -825,3 +825,14 @@ input[type=checkbox] {
     margin-top: 8px;
     border-radius: 12px
 }
+
+.sun-editor input,
+.sun-editor textarea {
+    margin-top: 0;
+    box-shadow: none
+}
+
+.sun-editor label {
+    margin-bottom: 0;
+    font-weight: 400
+}

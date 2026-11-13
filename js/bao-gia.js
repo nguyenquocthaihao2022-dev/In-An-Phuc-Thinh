@@ -20,8 +20,7 @@ f.onsubmit = async (e) => {
   e.preventDefault();
   const d = Object.fromEntries(new FormData(f)), btn = f.querySelector('button');
   btn.disabled = true; say('Đang gửi…');
-  const information = d.nd.filter(Boolean);
-  const { error } = await Supabase.from('lien_he').insert({ name: d.ten, email: d.email, phone_number: d.sdt, address: d.addr, product_type: d.sp, quantity: d.sl, information });
+  const { error } = await Supabase.from('lien_he').insert({ name: d.ten, email: d.email, phone_number: d.sdt, address: d.addr, product_type: d.sp, quantity: d.sl, information: d.nd });
   btn.disabled = false;
   if (error) { console.error(error); return say(`Chưa gửi được. Vui lòng gọi ${S.phoneText} để được hỗ trợ ngay.`, 'err'); }
   try { localStorage.pt_kh = JSON.stringify({ ten: d.ten, sdt: d.sdt }); } catch { }

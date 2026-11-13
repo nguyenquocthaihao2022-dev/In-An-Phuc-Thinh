@@ -11,12 +11,14 @@ const TABLES = {
     label: "Liên hệ",
     cols_labels: [
       "Họ tên",
+      "Email",
       "Số điện thoại",
+      "Địa chỉ",
       "Loại sản phẩm",
       "Số lượng",
       "Nội dung",
     ],
-    cols: ["name", "phone_number", "product_type", "quantity", "information"],
+    cols: ["name", "email", "phone_number", "address", "product_type", "quantity", "information"],
     fields: [
       ["name", "Họ tên"],
       ["email", "Email", "email"],

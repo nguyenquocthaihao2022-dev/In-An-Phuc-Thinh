@@ -21,8 +21,9 @@
         <div class="two">
           <form id="quote" class="panel">
             <label>Họ tên<input name="ten" required autocomplete="name"></label>
-            <label>Số điện thoại<input name="sdt" type="tel" inputmode="tel" required pattern="[0-9 +.]{9,16}"
-                autocomplete="tel"></label>
+            <label>Email<input name="email" type="email" autocomplete="email" required></label>
+            <label>Số điện thoại<input name="sdt" type="tel" inputmode="tel" required pattern="[0-9 +.]{9,16}" autocomplete="tel"></label>
+            <label>Địa chỉ<input name="addr" placeholder="VD: 123 Đường ABC, Quận XYZ" autocomplete="address-line1" required></label>
             <label>Loại ấn phẩm<select name="sp" required></select></label>
             <label>Số lượng dự kiến<input name="sl" placeholder="VD: 1.000 cái"></label>
             <label>Yêu cầu thêm<textarea name="nd" rows="4"

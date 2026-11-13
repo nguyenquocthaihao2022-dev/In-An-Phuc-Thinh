@@ -19,7 +19,9 @@ const TABLES = {
     cols: ["name", "phone_number", "product_type", "quantity", "information"],
     fields: [
       ["name", "Họ tên"],
+      ["email", "Email", "email"],
       ["phone_number", "Số điện thoại", "tel"],
+      ["address", "Địa chỉ", "text"],
       ["product_type", "Loại sản phẩm", "products"],
       ["quantity", "Số lượng", "number"],
       ["information", "Nội dung", "textarea"],

@@ -18,7 +18,7 @@ document.body.insertAdjacentHTML('afterbegin', `
   <a href="${S.map}" target="_blank" rel="noopener">📍 ${S.addr}</a>
   <span><a href="tel:${S.phone}">📞 ${S.phoneText}</a> &nbsp;·&nbsp; <a href="mailto:${S.email}">✉️ ${S.email}</a></span>
 </div></div>
-<nav class="bar"><div class="wrap"><nav class="bar"><div class="wrap">
+<nav class="bar"><div class="wrap">
   <a href="index.html" class="logo"><img src="Assets/icons/Logo-Phuc-Thinh.jpg" alt="${S.name}"></a>
   <div class="menu">
     <div class="links">${NAV.map(link).join('')}${AUTH}<input type="text" placeholder="Tìm kiếm..." class="search" /></div>

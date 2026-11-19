@@ -41,7 +41,6 @@ document.body.insertAdjacentHTML('beforeend', `
   <button id="up" aria-label="Lên đầu trang" hidden>↑</button>
 </div>`);
 
-const MOBILE = '(max-width:640px)'; // phải trùng với @media trong CSS
 const burger = $('.burger'), menu = $('.menu'), up = $('#up');
 const links = $('.links'), more = $('.more'), drop = $('.drop'), moreBtn = $('.more > button');
 const navItems = [...links.children];
@@ -53,15 +52,20 @@ moreBtn.onclick = () => moreBtn.setAttribute('aria-expanded', more.classList.tog
 document.addEventListener('click', (e) => { if (!more.contains(e.target)) closeMore(); });
 addEventListener('keydown', (e) => e.key === 'Escape' && closeMore());
 
-// Thu gọn dần: đo trực tiếp, nếu menu tràn ra ngoài mép phải của thanh thì đưa bớt mục cuối vào "Thêm"
-const wrap = $('.bar .wrap');
+// Thu gọn dần: đưa từng mục cuối vào "Thêm"; nếu thu hết mà vẫn không đủ chỗ thì chuyển sang burger
+const bar = $('.bar'), wrap = $('.bar .wrap');
 const over = () => menu.getBoundingClientRect().right - wrap.getBoundingClientRect().right > 1;
 const fit = () => {
+  bar.classList.remove('compact');
   links.append(...navItems);
   more.hidden = true;
-  if (matchMedia(MOBILE).matches) return; // chế độ burger: hiện tất cả trong menu dọc
   let n = navItems.length;
   while (n > 0 && over()) { more.hidden = false; drop.prepend(navItems[--n]); }
+  if (over()) {
+    links.append(...navItems);
+    more.hidden = true;
+    bar.classList.add('compact');
+  }
 };
 const ro = new ResizeObserver(() => requestAnimationFrame(fit));
 ro.observe(wrap);

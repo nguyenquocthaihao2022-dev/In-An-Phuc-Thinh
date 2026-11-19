@@ -9,9 +9,10 @@ const link = ([h, t]) => `<a href="${h}"${h === page ? ' class="on"' : ''}>${t}<
 // Supabase lưu phiên đăng nhập trong localStorage → không cần tải thư viện ở mọi trang.
 const logged = (() => { try { return Object.keys(localStorage).some((k) => /^sb-.+-auth-token$/.test(k)); } catch { return false; } })();
 const { data: { user } } = await sb.auth.getUser();
-const AUTH = logged
-  ? `<a href="tai-khoan.html"${page === 'tai-khoan.html' ? ' class="on"' : ''}>Tài khoản</a><a href="#" id="auth">Đăng xuất</a>`
-  : '<a href="dang-nhap.html" id="auth">Đăng nhập</a>';
+const AUTH = logged ? '<a href="#" id="auth">Đăng xuất</a>' : '<a href="dang-nhap.html" id="auth">Đăng nhập</a>';
+const AVATAR = logged
+  ? `<a href="tai-khoan.html" class="avatar${/^(sua-)?tai-khoan\.html$/.test(page) ? ' on' : ''}" aria-label="Tài khoản"><img id="av" alt="" referrerpolicy="no-referrer"><span>Tài khoản</span></a>`
+  : '';
 
 document.body.insertAdjacentHTML('afterbegin', `
 <div class="top"><div class="wrap">
@@ -24,6 +25,7 @@ document.body.insertAdjacentHTML('afterbegin', `
     <div class="links">${NAV.map(link).join('')}${AUTH}<input type="text" placeholder="Tìm kiếm..." class="search" /></div>
     <div class="more" hidden><button type="button" aria-expanded="false">Thêm ▾</button><div class="drop"></div></div>
     <a href="bao-gia.html" class="btn">Nhận báo giá</a>
+    ${AVATAR}
     ${user?.app_metadata?.app_role === 'admin' ? '<a href="admin.html" class="btn alt">Quản trị</a>' : ''}
   </div>
   <button class="burger" aria-label="Mở menu" aria-expanded="false">☰</button>
@@ -40,6 +42,20 @@ document.body.insertAdjacentHTML('beforeend', `
   <a href="tel:${S.phone}" class="call">📞 Gọi ngay</a>
   <button id="up" aria-label="Lên đầu trang" hidden>↑</button>
 </div>`);
+
+const FALLBACK = 'Assets/icons/user.png';
+const av = $('#av');
+if (av) {
+  const setAv = (src) => { av.onerror = () => { av.onerror = null; av.src = FALLBACK; }; av.src = src; };
+  let cached = ''; try { cached = localStorage.pt_avatar || ''; } catch { }
+  setAv(cached || FALLBACK);
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) return;
+  const { data } = await sb.from('profiles').select('picture').eq('id', session.user.id).maybeSingle();
+  try { localStorage.pt_avatar = data?.picture ?? ''; } catch { }
+  const next = data?.picture || FALLBACK;
+  if (new URL(next, location.href).href !== av.src) setAv(next);
+}
 
 const burger = $('.burger'), menu = $('.menu'), up = $('#up');
 const links = $('.links'), more = $('.more'), drop = $('.drop'), moreBtn = $('.more > button');
@@ -77,6 +93,7 @@ $('#auth').onclick = async (e) => {
   if (!logged) return;
   e.preventDefault();
   await sb.auth.signOut();
+  try { localStorage.removeItem('pt_avatar'); } catch { }
   location.href = 'index.html';
 };
 search.addEventListener('input', (e) => {

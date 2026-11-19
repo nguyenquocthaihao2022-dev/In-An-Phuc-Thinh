@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tài khoản</title>
+  <title> Tài khoản</title>
   <meta name="description" content="Quản lý tài khoản của bạn." />
   <link rel="icon" href="Assets/icons/App-Logo.jpg" />
   <link rel="stylesheet" href="css/style.css" />
@@ -12,27 +12,20 @@
 
 <body>
   <section class="sec">
-    <div class="wrap auth">
-      <h1>Tài khoản của bạn</h1>
-      <form id="info" class="panel">
-        <label>Email<input id="email" type="email" disabled></label>
-        <label>Họ tên<input name="ho_ten" maxlength="100" autocomplete="name"></label>
-        <label>Số điện thoại<input name="so_dien_thoai" type="tel" inputmode="tel" maxlength="20"
-            pattern="[0-9 +.]{9,16}" autocomplete="tel"></label>
-        <label>Địa chỉ<textarea name="dia_chi" rows="3" maxlength="300"
-            autocomplete="street-address"></textarea></label>
-        <button class="btn">Lưu thông tin</button>
-        <p class="msg" role="status"></p>
-      </form>
-      <form id="pw" class="panel">
-        <h2>Đổi mật khẩu</h2>
-        <label>Mật khẩu mới<input name="password" type="password" minlength="6" required
-            autocomplete="new-password"></label>
-        <label>Nhập lại mật khẩu mới<input name="again" type="password" minlength="6" required
-            autocomplete="new-password"></label>
-        <button class="btn alt">Đổi mật khẩu</button>
-        <p class="msg" role="status"></p>
-      </form>
+    <div class="wrap narrow">
+      <div class="panel profile">
+        <div class="head">
+          <img id="pic" class="pic" alt="" referrerpolicy="no-referrer">
+          <h1 id="name"></h1>
+        </div>
+        <dl>
+          <dt>Số điện thoại</dt>
+          <dd id="phone"></dd>
+          <dt>Địa chỉ</dt>
+          <dd id="address"></dd>
+        </dl>
+        <a class="btn" href="sua-tai-khoan.html">Sửa thông tin</a>
+      </div>
     </div>
   </section>
   <script type="module" src="js/app.js"></script>

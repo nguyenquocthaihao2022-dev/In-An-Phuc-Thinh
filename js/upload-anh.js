@@ -11,8 +11,8 @@ const toWebp = (file, max = 1200) => new Promise((ok) => {
   img.src = URL.createObjectURL(file);
 });
 
-export const upload = async (file, folder) => {
-  const blob = await toWebp(file);
+export const upload = async (file, folder, max = 1200) => {
+  const blob = await toWebp(file, max);
   const path = `${folder}/${crypto.randomUUID()}.${blob.type.split('/')[1]}`;
   const { error } = await sb.storage.from('anh').upload(path, blob, { contentType: blob.type, cacheControl: '31536000' });
   if (error) throw error;

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> Sửa tài khoản</title>
+  <meta name="description" content="Sửa tài khoản của bạn." />
+  <link rel="icon" href="Assets/icons/App-Logo.jpg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <section class="sec">
+    <div class="wrap auth">
+      <h1>Sửa thông tin</h1>
+      <form id="info" class="panel">
+        <div class="avatar-edit">
+          <img id="pic" class="pic" alt="" referrerpolicy="no-referrer">
+          <button type="button" class="btn alt" id="pick">Chọn ảnh</button>
+          <input id="file" type="file" accept="image/*" hidden>
+        </div>
+        <label>Email<input id="email" type="email" disabled></label>
+        <label>Họ tên<input name="name" maxlength="100" autocomplete="name"></label>
+        <label>Số điện thoại<input name="phone" type="tel" inputmode="tel" maxlength="20" pattern="[0-9 +.]{9,16}"
+            autocomplete="tel"></label>
+        <label>Địa chỉ<textarea name="address" rows="3" maxlength="300"
+            autocomplete="street-address"></textarea></label>
+        <button class="btn">Lưu thông tin</button>
+        <p class="msg" role="status"></p>
+      </form>
+      <form id="pw" class="panel">
+        <h2>Đổi mật khẩu</h2>
+        <label>Mật khẩu mới<input name="password" type="password" minlength="6" required
+            autocomplete="new-password"></label>
+        <label>Nhập lại mật khẩu mới<input name="again" type="password" minlength="6" required
+            autocomplete="new-password"></label>
+        <button class="btn alt">Đổi mật khẩu</button>
+        <p class="msg" role="status"></p>
+      </form>
+      <p><a href="tai-khoan.html">← Quay lại trang tài khoản</a></p>
+    </div>
+  </section>
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/sua-tai-khoan.js"></script>
+</body>
+
+</html>

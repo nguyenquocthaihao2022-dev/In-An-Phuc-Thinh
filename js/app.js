@@ -53,15 +53,19 @@ moreBtn.onclick = () => moreBtn.setAttribute('aria-expanded', more.classList.tog
 document.addEventListener('click', (e) => { if (!more.contains(e.target)) closeMore(); });
 addEventListener('keydown', (e) => e.key === 'Escape' && closeMore());
 
-// Thu gọn dần: mục đứng cuối được đưa vào "Thêm" trước
+// Thu gọn dần: đo trực tiếp, nếu menu tràn ra ngoài mép phải của thanh thì đưa bớt mục cuối vào "Thêm"
+const wrap = $('.bar .wrap');
+const over = () => menu.getBoundingClientRect().right - wrap.getBoundingClientRect().right > 1;
 const fit = () => {
   links.append(...navItems);
   more.hidden = true;
   if (matchMedia(MOBILE).matches) return; // chế độ burger: hiện tất cả trong menu dọc
   let n = navItems.length;
-  while (n > 0 && links.scrollWidth - links.clientWidth > 1) { more.hidden = false; drop.prepend(navItems[--n]); }
+  while (n > 0 && over()) { more.hidden = false; drop.prepend(navItems[--n]); }
 };
-new ResizeObserver(() => requestAnimationFrame(fit)).observe($('.bar .wrap'));
+const ro = new ResizeObserver(() => requestAnimationFrame(fit));
+ro.observe(wrap);
+ro.observe($('.logo')); // đo lại khi logo tải xong
 document.fonts?.ready.then(fit); // đo lại khi font chữ tải xong
 addEventListener('scroll', () => (up.hidden = scrollY < 500), { passive: true });
 up.onclick = () => scrollTo({ top: 0, behavior: 'smooth' });

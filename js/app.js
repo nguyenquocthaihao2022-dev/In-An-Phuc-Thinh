@@ -19,7 +19,7 @@ document.body.insertAdjacentHTML('afterbegin', `
   <span><a href="tel:${S.phone}">📞 ${S.phoneText}</a> &nbsp;·&nbsp; <a href="mailto:${S.email}">✉️ ${S.email}</a></span>
 </div></div>
 <nav class="bar"><div class="wrap"><nav class="bar"><div class="wrap">
-  <a href="index.html" class="logo"><img src="Assets/icons/Logo Phuc Thinh.jpg" alt="${S.name}"></a>
+  <a href="index.html" class="logo"><img src="Assets/icons/Logo-Phuc-Thinh.jpg" alt="${S.name}"></a>
   <div class="menu">
     <div class="links">${NAV.map(link).join('')}${AUTH}<input type="text" placeholder="Tìm kiếm..." class="search" /></div>
     <div class="more" hidden><button type="button" aria-expanded="false">Thêm ▾</button><div class="drop"></div></div>
@@ -45,6 +45,7 @@ const MOBILE = '(max-width:640px)'; // phải trùng với @media trong CSS
 const burger = $('.burger'), menu = $('.menu'), up = $('#up');
 const links = $('.links'), more = $('.more'), drop = $('.drop'), moreBtn = $('.more > button');
 const navItems = [...links.children];
+const search = $('.search');
 
 burger.onclick = () => burger.setAttribute('aria-expanded', menu.classList.toggle('open'));
 const closeMore = () => { more.classList.remove('open'); moreBtn.setAttribute('aria-expanded', 'false'); };

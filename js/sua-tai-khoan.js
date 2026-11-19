@@ -1,5 +1,5 @@
 import { Supabase as sb } from './supabase.js';
-import { upload } from './anh.js';
+import { upload } from './upload-anh.js';
 
 const $ = (s) => document.querySelector(s);
 const FALLBACK = 'Assets/icons/user.png';

@@ -50,11 +50,12 @@ if (av) {
   let cached = ''; try { cached = localStorage.pt_avatar || ''; } catch { }
   setAv(cached || FALLBACK);
   const { data: { session } } = await sb.auth.getSession();
-  if (!session) return;
-  const { data } = await sb.from('profiles').select('picture').eq('id', session.user.id).maybeSingle();
-  try { localStorage.pt_avatar = data?.picture ?? ''; } catch { }
-  const next = data?.picture || FALLBACK;
-  if (new URL(next, location.href).href !== av.src) setAv(next);
+  if (session) {
+    const { data } = await sb.from('profiles').select('picture').eq('id', session.user.id).maybeSingle();
+    try { localStorage.pt_avatar = data?.picture ?? ''; } catch { }
+    const next = data?.picture || FALLBACK;
+    if (new URL(next, location.href).href !== av.src) setAv(next);
+  }
 }
 
 const burger = $('.burger'), menu = $('.menu'), up = $('#up');

@@ -44,7 +44,7 @@ document.body.insertAdjacentHTML('beforeend', `
 const MOBILE = '(max-width:640px)'; // phải trùng với @media trong CSS
 const burger = $('.burger'), menu = $('.menu'), up = $('#up');
 const links = $('.links'), more = $('.more'), drop = $('.drop'), moreBtn = $('.more > button');
-const items = [...links.children];
+const navItems = [...links.children];
 
 burger.onclick = () => burger.setAttribute('aria-expanded', menu.classList.toggle('open'));
 const closeMore = () => { more.classList.remove('open'); moreBtn.setAttribute('aria-expanded', 'false'); };
@@ -54,11 +54,11 @@ addEventListener('keydown', (e) => e.key === 'Escape' && closeMore());
 
 // Thu gọn dần: mục đứng cuối được đưa vào "Thêm" trước
 const fit = () => {
-  links.append(...items);
+  links.append(...navItems);
   more.hidden = true;
   if (matchMedia(MOBILE).matches) return; // chế độ burger: hiện tất cả trong menu dọc
-  let n = items.length;
-  while (n > 0 && links.scrollWidth - links.clientWidth > 1) { more.hidden = false; drop.prepend(items[--n]); }
+  let n = navItems.length;
+  while (n > 0 && links.scrollWidth - links.clientWidth > 1) { more.hidden = false; drop.prepend(navItems[--n]); }
 };
 new ResizeObserver(() => requestAnimationFrame(fit)).observe($('.bar .wrap'));
 document.fonts?.ready.then(fit); // đo lại khi font chữ tải xong

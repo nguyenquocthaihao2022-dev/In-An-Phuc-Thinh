@@ -874,22 +874,23 @@ input[type=checkbox] {
     color: var(--red)
 }
 
+.bar.compact .wrap {
+    flex-wrap: wrap
+}
+
 .bar.compact .burger {
     display: block
 }
 
 .bar.compact .menu {
     display: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
+    order: 3;
+    flex: 0 0 100%;
     flex-direction: column;
     align-items: stretch;
-    padding: 12px 4%;
-    border-bottom: 1px solid var(--line);
-    background: #fff;
-    box-shadow: var(--sh)
+    padding: 4px 0 16px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto
 }
 
 .bar.compact .menu.open {

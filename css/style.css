@@ -174,6 +174,7 @@ blue {
 }
 
 .logo {
+    flex: none;
     margin-right: auto
 }
 
@@ -185,10 +186,24 @@ blue {
 .menu {
     display: flex;
     align-items: center;
-    gap: 4px
+    gap: 8px;
+    min-width: 0
 }
 
-.menu a:not(.btn) {
+.links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+    overflow: hidden
+}
+
+.menu a {
+    white-space: nowrap
+}
+
+.menu a:not(.btn),
+.more>button {
     padding: 8px 14px;
     border-radius: 999px;
     font-weight: 500;
@@ -196,26 +211,62 @@ blue {
 }
 
 .menu a:not(.btn):hover,
-.menu a.on {
+.menu a.on,
+.more>button:hover,
+.more.open>button {
     background: #fdecec;
     color: var(--red)
 }
 
-.menu .search {
-    width: 120px;
-}
-
 .menu .btn {
+    flex: none;
     margin-left: 8px;
     padding: 10px 20px
 }
 
+.more {
+    position: relative;
+    flex: none
+}
+
+.more>button {
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer
+}
+
+.drop {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    min-width: 200px;
+    padding: 6px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: var(--sh)
+}
+
+.more.open .drop {
+    display: block
+}
+
+.menu .drop a {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 8px
+}
+
 .burger {
     display: none;
-    background: none;
     border: 0;
-    font-size: 1.7rem;
+    background: none;
     color: var(--ink);
+    font-size: 1.7rem;
     cursor: pointer
 }
 
@@ -734,6 +785,24 @@ footer a:hover {
         display: none
     }
 
+    .hero-in,
+    .two,
+    .two.half,
+    .fgrid,
+    .summary-content {
+        grid-template-columns: 1fr
+    }
+
+    .sec {
+        padding: 44px 0
+    }
+
+    .band {
+        padding: 28px
+    }
+}
+
+@media(max-width:640px) {
     .burger {
         display: block
     }
@@ -752,32 +821,18 @@ footer a:hover {
         box-shadow: var(--sh)
     }
 
-    .menu .search {
-        width: 100%;
-    }
-
     .menu.open {
         display: flex
     }
 
+    .links {
+        flex-direction: column;
+        align-items: stretch;
+        overflow: visible
+    }
+
     .menu .btn {
         margin: 8px 0 0
-    }
-
-    .hero-in,
-    .two,
-    .two.half,
-    .fgrid,
-    .summary-content {
-        grid-template-columns: 1fr
-    }
-
-    .sec {
-        padding: 44px 0
-    }
-
-    .band {
-        padding: 28px
     }
 }
 
@@ -835,4 +890,26 @@ input[type=checkbox] {
 .sun-editor label {
     margin-bottom: 0;
     font-weight: 400
+}
+
+.panel+.panel {
+    margin-top: 24px
+}
+
+.auth h1 {
+    margin-bottom: 20px;
+    font-size: 2rem
+}
+
+.msg {
+    margin-top: 14px;
+    font-weight: 500
+}
+
+.msg.ok {
+    color: #2e7d32
+}
+
+.msg.err {
+    color: var(--red)
 }

@@ -24,6 +24,9 @@ f.onsubmit = async (e) => {
   btn.disabled = false;
   if (error) { console.error(error); return say(`Chưa gửi được. Vui lòng gọi ${S.phoneText} để được hỗ trợ ngay.`, 'err'); }
   try { localStorage.pt_kh = JSON.stringify({ ten: d.ten, sdt: d.sdt }); } catch { }
+  const { data: { session } } = await Supabase.auth.getSession();
+  const m = session?.user.user_metadata;
+  if (m) { f.ten.value ||= m.ho_ten ?? ''; f.sdt.value ||= m.so_dien_thoai ?? ''; }
   f.reset(); f.nd.value = '';
   say(`Đã nhận yêu cầu! Chúng tôi sẽ gọi lại cho bạn sớm nhất (giờ làm việc ${S.hours}).`, 'ok');
 };

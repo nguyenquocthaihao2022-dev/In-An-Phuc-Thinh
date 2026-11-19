@@ -9,21 +9,24 @@ const link = ([h, t]) => `<a href="${h}"${h === page ? ' class="on"' : ''}>${t}<
 // Supabase lưu phiên đăng nhập trong localStorage → không cần tải thư viện ở mọi trang.
 const logged = (() => { try { return Object.keys(localStorage).some((k) => /^sb-.+-auth-token$/.test(k)); } catch { return false; } })();
 const { data: { user } } = await sb.auth.getUser();
+const AUTH = logged
+  ? `<a href="tai-khoan.html"${page === 'tai-khoan.html' ? ' class="on"' : ''}>Tài khoản</a><a href="#" id="auth">Đăng xuất</a>`
+  : '<a href="dang-nhap.html" id="auth">Đăng nhập</a>';
 
 document.body.insertAdjacentHTML('afterbegin', `
 <div class="top"><div class="wrap">
   <a href="${S.map}" target="_blank" rel="noopener">📍 ${S.addr}</a>
   <span><a href="tel:${S.phone}">📞 ${S.phoneText}</a> &nbsp;·&nbsp; <a href="mailto:${S.email}">✉️ ${S.email}</a></span>
 </div></div>
-<nav class="bar"><div class="wrap">
-  <a href="index.html" class="logo"><img src="Assets/icons/Logo-Phuc-Thinh.jpg" alt="${S.name}"></a>
-  <button class="burger" aria-label="Mở menu" aria-expanded="false">☰</button>
-  <div class="menu">${NAV.map(link).join('')}
-    <a href="${logged ? '#' : 'dang-nhap.html'}" id="auth">${logged ? 'Đăng xuất' : 'Đăng nhập'}</a>
-    <input type="text" placeholder="Tìm kiếm..." class="search" />
+<nav class="bar"><div class="wrap"><nav class="bar"><div class="wrap">
+  <a href="index.html" class="logo"><img src="Assets/icons/Logo Phuc Thinh.jpg" alt="${S.name}"></a>
+  <div class="menu">
+    <div class="links">${NAV.map(link).join('')}${AUTH}<input type="text" placeholder="Tìm kiếm..." class="search" /></div>
+    <div class="more" hidden><button type="button" aria-expanded="false">Thêm ▾</button><div class="drop"></div></div>
     <a href="bao-gia.html" class="btn">Nhận báo giá</a>
     ${user?.app_metadata?.app_role === 'admin' ? '<a href="admin.html" class="btn alt">Quản trị</a>' : ''}
   </div>
+  <button class="burger" aria-label="Mở menu" aria-expanded="false">☰</button>
 </div></nav>`);
 
 document.body.insertAdjacentHTML('beforeend', `
@@ -38,8 +41,27 @@ document.body.insertAdjacentHTML('beforeend', `
   <button id="up" aria-label="Lên đầu trang" hidden>↑</button>
 </div>`);
 
-const burger = $('.burger'), menu = $('.menu'), up = $('#up'), search = $('.search');
+const MOBILE = '(max-width:640px)'; // phải trùng với @media trong CSS
+const burger = $('.burger'), menu = $('.menu'), up = $('#up');
+const links = $('.links'), more = $('.more'), drop = $('.drop'), moreBtn = $('.more > button');
+const items = [...links.children];
+
 burger.onclick = () => burger.setAttribute('aria-expanded', menu.classList.toggle('open'));
+const closeMore = () => { more.classList.remove('open'); moreBtn.setAttribute('aria-expanded', 'false'); };
+moreBtn.onclick = () => moreBtn.setAttribute('aria-expanded', more.classList.toggle('open'));
+document.addEventListener('click', (e) => { if (!more.contains(e.target)) closeMore(); });
+addEventListener('keydown', (e) => e.key === 'Escape' && closeMore());
+
+// Thu gọn dần: mục đứng cuối được đưa vào "Thêm" trước
+const fit = () => {
+  links.append(...items);
+  more.hidden = true;
+  if (matchMedia(MOBILE).matches) return; // chế độ burger: hiện tất cả trong menu dọc
+  let n = items.length;
+  while (n > 0 && links.scrollWidth - links.clientWidth > 1) { more.hidden = false; drop.prepend(items[--n]); }
+};
+new ResizeObserver(() => requestAnimationFrame(fit)).observe($('.bar .wrap'));
+document.fonts?.ready.then(fit); // đo lại khi font chữ tải xong
 addEventListener('scroll', () => (up.hidden = scrollY < 500), { passive: true });
 up.onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
 $('#auth').onclick = async (e) => {
